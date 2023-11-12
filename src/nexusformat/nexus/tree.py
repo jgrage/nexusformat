@@ -209,8 +209,13 @@ from pathlib import Path
 from pathlib import PurePosixPath as PurePath
 
 import h5py as h5
-import hdf5plugin
 import numpy as np
+
+#only import hdf5 compression plugins if they exist. (Doesn't compile on FreeBS>
+try:
+    import hdf5plugin
+except ModuleNotFoundError as err:
+    pass
 
 from .. import __version__ as nxversion
 from .lock import NXLock, NXLockException
